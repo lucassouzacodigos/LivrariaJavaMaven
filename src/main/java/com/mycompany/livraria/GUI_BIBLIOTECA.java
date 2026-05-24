@@ -152,23 +152,33 @@ public class GUI_BIBLIOTECA extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        new GUI_LIVROS().setVisible(true);
+        GUI_LIVROS tela = new GUI_LIVROS();
+        
+        tela.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        new GUI_FUNCIONARIO().setVisible(true);
+        GUI_FUNCIONARIO tela = new GUI_FUNCIONARIO();
+        
+        tela.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new GUI_USUARIO().setVisible(true);
+        GUI_USUARIO tela = new GUI_USUARIO();
+        
+        tela.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new GUI_EXTRATODEPAGAMENTO().setVisible(true);
+        GUI_EXTRATODEPAGAMENTO tela = new GUI_EXTRATODEPAGAMENTO();
+        
+        tela.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        new GUI_EMPRESTIMODEVOLUCAO().setVisible(true);
+        GUI_EMPRESTIMODEVOLUCAO tela =  new GUI_EMPRESTIMODEVOLUCAO();
+        
+        tela.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**

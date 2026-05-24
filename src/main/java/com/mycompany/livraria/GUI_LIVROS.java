@@ -2,7 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.livraria;;
+
+
+
+package com.mycompany.livraria;
+
+import com.google.cloud.firestore.Firestore;
+import com.google.firebase.cloud.FirestoreClient;
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
+
+import java.util.List;
+
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -11,12 +24,58 @@ package com.mycompany.livraria;;
 public class GUI_LIVROS extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GUI_LIVROS.class.getName());
+    Firestore db = FirestoreClient.getFirestore();
 
+    public void carregarLivros() {
+
+        try {
+
+            ApiFuture<QuerySnapshot> future =
+                    db.collection("livros").get();
+
+            List<QueryDocumentSnapshot> documents =
+                    future.get().getDocuments();
+
+            DefaultTableModel model =
+                    (DefaultTableModel) jTable1.getModel();
+
+            model.setRowCount(0);
+
+            for (QueryDocumentSnapshot document : documents) {
+
+                String nome =
+                        document.getString("titulo");
+
+                String autor =
+                        document.getString("autor");
+
+                Boolean disponivel =
+                        document.getBoolean("disponivel");
+
+                model.addRow(new Object[] {
+                    nome,
+                    autor,
+                    disponivel
+                });
+
+            }
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+    }
+    
+    
     /**
      * Creates new form GUI_LIVROS
      */
     public GUI_LIVROS() {
         initComponents();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        carregarLivros();
     }
 
     /**
@@ -34,7 +93,7 @@ public class GUI_LIVROS extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         autorLivro = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnCadastrarLivro = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -58,8 +117,8 @@ public class GUI_LIVROS extends javax.swing.JFrame {
 
         jLabel3.setText("Autor:");
 
-        jButton1.setText("Cadastrar");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        btnCadastrarLivro.setText("Cadastrar");
+        btnCadastrarLivro.addActionListener(this::btnCadastrarLivroActionPerformed);
 
         jButton2.setText("Cancelar");
         jButton2.addActionListener(this::jButton2ActionPerformed);
@@ -100,7 +159,7 @@ public class GUI_LIVROS extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButton2)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1))
+                                .addComponent(btnCadastrarLivro))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -127,7 +186,7 @@ public class GUI_LIVROS extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnCadastrarLivro)
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -152,8 +211,19 @@ public class GUI_LIVROS extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nomeLivroActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnCadastrarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarLivroActionPerformed
+        //Inicia o firebase
+        
+        String livro = nomeLivro.getText();
+        String autor = autorLivro.getText();
+        
+        Livro livroFirebase = new Livro(livro, autor);
+        
+        db.collection("livros").add(livroFirebase);
+        
+        carregarLivros();
+        
+    }//GEN-LAST:event_btnCadastrarLivroActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -185,7 +255,7 @@ public class GUI_LIVROS extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField autorLivro;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnCadastrarLivro;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

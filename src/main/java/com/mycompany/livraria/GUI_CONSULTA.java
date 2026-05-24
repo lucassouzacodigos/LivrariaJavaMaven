@@ -17,6 +17,7 @@ public class GUI_CONSULTA extends javax.swing.JFrame {
      */
     public GUI_CONSULTA() {
         initComponents();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**

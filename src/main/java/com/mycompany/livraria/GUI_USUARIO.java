@@ -17,6 +17,7 @@ public class GUI_USUARIO extends javax.swing.JFrame {
      */
     public GUI_USUARIO() {
         initComponents();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**

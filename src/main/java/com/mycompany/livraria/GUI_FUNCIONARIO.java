@@ -17,6 +17,7 @@ public class GUI_FUNCIONARIO extends javax.swing.JFrame {
      */
     public GUI_FUNCIONARIO() {
         initComponents();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -42,7 +43,7 @@ public class GUI_FUNCIONARIO extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jInternalFrame1.setTitle("BIBLIOTECA");
         jInternalFrame1.setVisible(true);
@@ -67,6 +68,7 @@ public class GUI_FUNCIONARIO extends javax.swing.JFrame {
         jButton1.setText("Pagamento");
 
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
 
         jButton3.setText("Cadastrar");
 
@@ -170,6 +172,11 @@ public class GUI_FUNCIONARIO extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // botao cancelar
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

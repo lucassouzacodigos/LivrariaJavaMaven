@@ -17,6 +17,7 @@ public class GUI_EXTRATODEPAGAMENTO extends javax.swing.JFrame {
      */
     public GUI_EXTRATODEPAGAMENTO() {
         initComponents();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**

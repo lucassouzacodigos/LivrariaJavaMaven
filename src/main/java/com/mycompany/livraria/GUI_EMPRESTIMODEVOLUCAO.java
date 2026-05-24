@@ -18,6 +18,7 @@ public class GUI_EMPRESTIMODEVOLUCAO extends javax.swing.JFrame {
      */
     public GUI_EMPRESTIMODEVOLUCAO() {
         initComponents();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
